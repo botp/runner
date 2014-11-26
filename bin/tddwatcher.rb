@@ -1,7 +1,7 @@
 
 runner_path = ENV['RUNNER_ROOT']
-require "#{runner_path}/mktest_template.rb"
-require "#{runner_path}/mktest_runner.rb"
+require "#{runner_path}/bin/mktest_template.rb"
+require "#{runner_path}/bin/mktest_runner.rb"
 
 def say_n_print text
 	p text

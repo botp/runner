@@ -1,5 +1,5 @@
 #!/bin/sh
 
-filewatcher  "*.{rb,py,js}" 'ruby tddwatcher.rb $FILENAME'
+filewatcher  "*.{rb,py,js}" 'ruby $RUNNER_ROOT/bin/tddwatcher.rb $FILENAME'
 
 
