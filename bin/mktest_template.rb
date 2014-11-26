@@ -41,7 +41,7 @@ def mktest_template pathname
       end
    end
 
-   exit 0
+   # exit 0
 
 end
 

@@ -26,7 +26,7 @@ def mktest_runner pathname
    cmd = runner % [pathname]
    system cmd
 
-   exit 0
+   # exit 0
 
 end
 
