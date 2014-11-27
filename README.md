@@ -7,7 +7,7 @@ test runner. scaffolds test if needed.
 
 ## Requirements
 - Ruby
--  filewatcher rubygem
+-  filewatcher gem
 - Git
 - Curl
 
@@ -28,7 +28,7 @@ Install latest stable Ruby and make it global:
 
 
 
-## About rbenv
+## About runner
 
 **runner** source code is available at <https://github.com/botp/runner/blob/master/bin/runner-installer>
 
