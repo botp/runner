@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# Verify Git is installed:
+if [ ! $(which git) ]; then
+  echo "Git is not installed, can't continue."
+  exit 1
+fi
+
+if [ -z "${RUNNER_ROOT}" ]; then
+  RUNNER_ROOT="$HOME/.runner"
+fi
+
+# Install runner:
+if [ ! -d "$RUNNER_ROOT" ] ; then
+  git clone https://github.com/botp/runner.git $RUNNER_ROOT
+else
+  cd $RUNNER_ROOT
+  if [ ! -d '.git' ]; then
+    git init
+    git remote add origin https://github.com/botp/runner.git
+  fi
+  git pull origin master
+fi
+
+
+# Show help if '.runner.sh' is not in the path:
+if [ ! $(which runner.sh) ]; then
+  echo "
+Seems you still have not added 'runner' to the load path:
+
+# ~/.bash_profile:
+
+export RUNNER_ROOT=\"\${HOME}/.runner\"
+
+if [ -d \"\${RUNNER_ROOT}\" ]; then
+  export PATH=\"\${RUNNER_ROOT}/bin:\${PATH}\"
+fi
+"
+fi
