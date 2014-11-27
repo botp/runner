@@ -24,10 +24,14 @@ Install [runner] and friends by running:
 
 Use rbenv  from  https://github.com/fesplugas/rbenv-installer
 
+
+
 Install latest stable Ruby and make it global:
-  eg
-    rbenv install 2.1.5
-    rbenv global 2.1.5
+eg
+rbenv install 2.1.5
+rbenv global 2.1.5
+
+
 
 ## Install filewatcher gem
 
