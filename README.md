@@ -16,7 +16,7 @@ test runner. scaffolds test if needed.
 
 Install [runner] and friends by running:
 
-   curl https://github.com/botp/runner/blob/master/bin/runner-installer  | bash
+   curl https://raw.githubusercontent.com/botp/runner/master/bin/runner-installer | bash
 
 
 ## Installing a Ruby
