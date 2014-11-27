@@ -20,14 +20,21 @@ Install [runner] and friends by running:
 
 
 
-## Installing a Ruby
+## Recommended way Installing Ruby
+
+Use rbenv  from  https://github.com/fesplugas/rbenv-installer
 
 Install latest stable Ruby and make it global:
+  eg
+    rbenv install 2.1.5
+    rbenv global 2.1.5
 
-    ruby install 2.1.5
-    ruby global 2.1.5
+## Install filewatcher gem
+
+   gem install filewatcher
 
 
+## Git and Curl may be installed using your favorite distro repo/packager
 
 ## About runner
 
