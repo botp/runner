@@ -1,8 +1,14 @@
 #-------------------------------------
 #!env ruby
-#
-#-------------------------------------
-
+# purpose:
+#   create a test template
+# caller(s):
+#   tddwatcher.rb
+#   using:
+#      tddwatcher <pathname_of_testfile>
+# expects:
+#    pathame of testfile
+#--------------------------------------
 require 'fileutils'
 
 def mktest_runner pathname
@@ -23,11 +29,7 @@ def mktest_runner pathname
       exit 1
    end
 
-   cmd = runner % [pathname]
-   system cmd
-
-   # exit 0
-
+   runner % [pathname]
 end
 
 if $0 == __FILE__

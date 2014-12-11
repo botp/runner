@@ -1,7 +1,14 @@
 #-------------------------------------
 #!env ruby
-#
-#-------------------------------------
+# purpose:
+#   create a test template
+# caller(s):
+#   tddwatcher.rb
+#   using:
+#      tddwatcher <pathname_of_testfile>
+# expects:
+#    pathame of testfile
+#--------------------------------------
 
 require 'fileutils'
 
@@ -26,7 +33,6 @@ def mktest_template pathname
       exit 1
    end
 
-   # test_folder   = File.join dirname , "test"
    test_filename = basefilename + extension
    test_pathname = File.join test_folder, test_filename
 
@@ -41,9 +47,8 @@ def mktest_template pathname
       end
    end
 
-   # exit 0
-
 end
+
 
 if $0 == __FILE__
    pathname = ARGV[0] || raise( "syntax: %s <file_to_edit>" % __FILE__ )
