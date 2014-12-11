@@ -19,6 +19,9 @@ else
     git init
     git remote add origin https://github.com/botp/runner.git
   fi
+
+  git fetch --all
+  git reset --hard origin/master 
   git pull origin master
 fi
 
