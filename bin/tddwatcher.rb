@@ -1,9 +1,16 @@
+# tddwatcher.rb
 
-runner_test_folder = ENV['RUNNER_TEST_FOLDER'] || "tests" 
-runner_path = ENV['RUNNER_ROOT']
+runner_test_path = ENV['RUNNER_ROOT']
 
-require "#{runner_path}/bin/mktest_template.rb"
-require "#{runner_path}/bin/mktest_runner.rb"
+require "#{runner_test_path}/bin/mktest_template.rb"
+require "#{runner_test_path}/bin/mktest_runner.rb"
+
+PARAMS = {
+	test_folder: ENV['RUNNER_TEST_FOLDER'] || "./tests"  ,
+	root_path:   ENV['RUNNER_ROOT'] || "/.runner"   ,
+	filename_prefix: "test_"  ,
+	filename_suffix: ""  ,
+}
 
 def say_n_print text
 	puts text
@@ -12,38 +19,45 @@ def say_n_print text
 	# system "say '#{text}' "  # outputs audio text to speech
 end
 
-# def cmd_runner pathname
-# 	# say_n_print "running test"    #  "#{File.basename(pathname)}..."
-# 	say_n_print "running test #{pathname}..."
-# 	# puts "running test #{pathname}..."
-# 	mktest_runner pathname
-# end
 
-# def cmd_creator pathname
-# 	# say_n_print "creating template"  # for #{pathname}..."
-# 	say_n_print "creating template for #{pathname}..."
-# 	# puts "creating template #{pathname}..."
-# 	mktest_template pathname
-# end
+class TestRunner
+	def initialize pparams={pathname: ARGV.first}, params = PARAMS
 
+		params.merge! pparams
+		params.each do |key, value|
+			self.instance_variable_set("@#{key}".to_sym, value)
+		end
+	end
 
-pathname = ARGV.first
+	def is_test_file?
+		@pathname.include? "test"
+	end
 
-unless pathname.include? "test"
-	path, filename = File.split pathname
-	extension = File.extname filename
-	basename  = File.basename filename, extension 
-	pathname = File.join path, runner_test_folder, "test_"+basename+extension
+	def testfilenamefix filename
+		extension = File.extname filename
+		basename  = File.basename filename, extension
+		[@filename_prefix, basename, extension, @filename_suffix].join
+	end
 
-	unless File.file? pathname
-		say_n_print "creating template for #{pathname}..."
-		mktest_template pathname
+	def run
+		pathname = @pathname
+		unless is_test_file?
+			path, filename = File.split @pathname
+			pathname = File.join path, @test_folder, testfilenamefix(filename)
+
+			unless File.file? pathname
+				say_n_print "creating template for #{pathname}..."
+				mktest_template pathname
+			end
+		end
+
+		say_n_print "running test #{pathname}..."
+		runner = mktest_runner pathname
+		system runner
 	end
 end
 
-say_n_print "running test #{pathname}..."
-runner = mktest_runner pathname
-system runner
 
+TestRunner.new.run
 exit 0
 
