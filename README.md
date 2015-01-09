@@ -30,9 +30,9 @@ Install latest stable Ruby and make it global:
 
 eg
 
-rbenv install 2.1.5
+rbenv install 2.2.0
 
-rbenv global 2.1.5
+rbenv global 2.2.0
 
 
 
